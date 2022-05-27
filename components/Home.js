@@ -10,6 +10,9 @@ const Main = () => {
 
 
     useEffect(() => {
+        let date = new Date().toUTCString().slice(5,16)
+        document.getElementById("date").innerHTML = date
+
         function parseTo(string) {
             return parseFloat(string).toFixed(2)
         }
@@ -74,7 +77,7 @@ const Main = () => {
                         <Text fontSize="2xl">Welcome back <b>CryptoNerd!</b></Text>
                         <HStack>
                             <Image src="/images/calendar.png" height={20} width={20} alt="calendar" />
-                            <Text fontSize="lg">Fri, 27 May 2022</Text>
+                            <Text fontSize="lg" id="date">27 May 2022</Text>
                         </HStack>
                     </Flex>
                     <Flex w="70%" h="100px" bgColor="baseBg" alignItems="center" borderRadius="10px">
