@@ -1,4 +1,4 @@
-import { Box, Container, VStack, Flex, Text, HStack, Center } from "@chakra-ui/react";
+import { Box, Container, VStack, Flex, Text, HStack, Center, Button } from "@chakra-ui/react";
 import Image from 'next/image'
 import { useEffect } from "react";
 // require("dot-env")
@@ -10,12 +10,13 @@ const Main = () => {
 
 
     useEffect(() => {
-        let date = new Date().toUTCString().slice(5,16)
+        let date = new Date().toUTCString().slice(5, 16)
         document.getElementById("date").innerHTML = date
 
         function parseTo(string) {
             return parseFloat(string).toFixed(2)
         }
+
         function callAPI() {
             fetch(url)
                 .then(res => res.json())
@@ -56,7 +57,6 @@ const Main = () => {
                             const oneGWEItoEth = 0.00000000155
                             const baseFeeInEth = parseFloat(baseFee) * oneGWEItoEth
                             const baseFeeInUSD = baseFeeInEth * oneEthToUSD
-
                             document.getElementById("baseFeesUSD").innerHTML = (baseFeeInUSD.toString()).substring(0, 10)
                         }).catch(err => {
                             console.log(err)
@@ -71,7 +71,7 @@ const Main = () => {
 
     return (
         <Container maxW="100vw" bgColor="background" minHeight="100vh" centerContent="true" justifyContent="center">
-            <Box bgColor="white" height="80vh" width="80%" borderRadius="25px">
+            <Box bgColor="white" height="85vh" width="80%" borderRadius="25px">
                 <VStack spacing={6} fontFamily="primary" mt="3%">
                     <Flex h="100px" color="greeting" alignItems="center" w="70%" justifyContent="space-between" borderRadius="25px">
                         <Text fontSize="2xl">Welcome back <b>CryptoNerd!</b></Text>
@@ -105,14 +105,14 @@ const Main = () => {
                                 </Flex>
                             </Center>
                             <Center bgColor="marketBg" h="100px" w="30%" justifyContent="space-evenly" borderRadius="5px">
-                                <Image src="/images/Fox.svg" height={50} width={50} alt="turtle" />
+                                <Image src="/images/Fox.svg" height={50} width={50} alt="fox" />
                                 <Flex color="marketText" flexDir="column">
                                     <Text>MARKET</Text>
                                     <Text><b id="marketFees">20</b> <b>GWEI</b></Text>
                                 </Flex>
                             </Center>
                             <Center bgColor="aggressiveBg" h="100px" w="30%" justifyContent="space-evenly" borderRadius="5px">
-                                <Image src="/images/Gorilla.svg" height={50} width={50} alt="turtle" />
+                                <Image src="/images/Gorilla.svg" height={50} width={50} alt="gorilla" />
                                 <Flex color="aggressiveText" flexDir="column">
                                     <Text>AGGRESSIVE</Text>
                                     <Text><b id="aggressiveFees">20</b> <b>GWEI</b></Text>
@@ -120,6 +120,10 @@ const Main = () => {
                             </Center>
                         </HStack>
                     </Flex>
+                    <Button size="lg" bgColor="orange.100" _hover={{ bg: "blue.100"}}>
+                        <Image px="20px" src="/images/Bell.svg" width={30} height={30} alt="Bell" />
+                        <Text fontSize="xl" fontWeight="bold">Notify Me!</Text>
+                    </Button>
                 </VStack>
             </Box>
         </Container>
